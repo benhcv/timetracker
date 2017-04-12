@@ -38,8 +38,7 @@ export class EntryListComponent implements OnInit {
   addEntry( value: any ) {
     console.log( value );
     this.entryService.addEntry(value);
-    this.entryForm.controls['project'].reset();
-    //this.entryForm.reset();
+    this.entryForm.reset();
   }
 
 }
