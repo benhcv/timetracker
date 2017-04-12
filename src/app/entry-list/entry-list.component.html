@@ -1,5 +1,14 @@
 <div class="container">
   <button type="button" (click)="addEntry()">Add Entry</button>
+  <div>
+    <form [formGroup]="entryForm" (ngSubmit)="addEntry(entryForm.value)" style="background-color: #666666;padding: 10px;">
+      <input type="text" formControlName="project">
+      <input type="text" formControlName="task">
+      <input type="text" formControlName="hours">
+      <input type="date" formControlName="workDate">
+      <button [disabled]="!entryForm.valid" type="submit">Save</button>
+    </form>
+  </div>
   <ul class="entry-list">
     <li *ngFor="let nextEntry of entries">
       <app-entry-item [entry]="nextEntry" (entryClick)="handleClick($event)"></app-entry-item>

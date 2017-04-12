@@ -25,10 +25,19 @@ export class EntryService {
     }
   ];
 
-  constructor() { }
+  constructor() {
+  }
 
   fecthAll() {
     return this.entries;
+  }
+
+  addEntry( value: any ) {
+    this.entries.push( {
+      project_name: value.project,
+      task_name: value.task,
+      hours: value.hours
+    } );
   }
 
 }
