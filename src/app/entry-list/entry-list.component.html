@@ -1,16 +1,16 @@
 <div class="container">
-  <button type="button" (click)="addEntry()">Add Entry</button>
+  <button type="button" (click)="toggleAddEntry()">Add Entry</button>
   <div>
-    <form [formGroup]="entryForm" (ngSubmit)="addEntry(entryForm.value)" style="background-color: #666666;padding: 10px;">
-      <input type="text" formControlName="project">
-      <input type="text" formControlName="task">
+    <form [hidden]="showAddEntry" [formGroup]="entryForm" (ngSubmit)="addEntry(entryForm.value)" style="background-color: #666666;padding: 10px;">
+      <input type="text" formControlName="project_name">
+      <input type="text" formControlName="task_name">
       <input type="text" formControlName="hours">
       <input type="date" formControlName="workDate">
       <button [disabled]="!entryForm.valid" type="submit">Save</button>
     </form>
   </div>
   <ul class="entry-list">
-    <li *ngFor="let nextEntry of entries">
+    <li *ngFor="let nextEntry of entries | async">
       <app-entry-item [entry]="nextEntry" (entryClick)="handleClick($event)"></app-entry-item>
     </li>
   </ul>

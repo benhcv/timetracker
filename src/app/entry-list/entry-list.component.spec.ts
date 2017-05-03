@@ -1,6 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EntryListComponent } from './entry-list.component';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EntryItemComponent } from '../entry-item/entry-item.component';
+import { EntryStoreService } from '../services/entry-store.service';
+import { ProjectService } from '../services/project.service';
+import { EntryService } from '../services/entry.service';
+import { Http } from '@angular/http';
 
 describe('EntryListComponent', () => {
   let component: EntryListComponent;
@@ -8,7 +14,9 @@ describe('EntryListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EntryListComponent ]
+      declarations: [ EntryListComponent, EntryItemComponent ],
+      imports: [ FormsModule, ReactiveFormsModule ],
+      providers: [ EntryStoreService, ProjectService, FormBuilder, EntryService, Http ]
     })
     .compileComponents();
   }));

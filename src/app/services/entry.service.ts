@@ -1,4 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
+import { Http, Response } from '@angular/http';
+
 
 @Injectable()
 export class EntryService {
@@ -25,19 +30,27 @@ export class EntryService {
     }
   ];
 
-  constructor() {
+  constructor( private http: Http ) {
   }
 
-  fecthAll() {
-    return this.entries;
+  fecthAll(): Observable<any[]> {
+    return new Observable( ( subject ) => {
+      console.log( 'Added entries...' );
+      subject.next( this.entries );
+    } );
+  }
+
+  fetchEntries(): Observable<any[]> {
+    return this.http.get( 'http://localhost:3000/api/entries' ).map( ( res: Response ) => res.json() );
   }
 
   addEntry( value: any ) {
-    this.entries.push( {
+    return this.http.post( 'http://localhost:3000/api/entries', value ).map( ( res: Response ) => res.json() );
+    /*this.entries.push( {
       project_name: value.project,
       task_name: value.task,
       hours: value.hours
-    } );
+    } );*/
   }
 
 }

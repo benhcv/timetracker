@@ -7,8 +7,8 @@ describe('timetracker App', () => {
     page = new TimetrackerPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display message saying TimeTracker', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual('TimeTracker');
   });
 });

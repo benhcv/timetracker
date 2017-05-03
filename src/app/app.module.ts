@@ -8,6 +8,8 @@ import { EntryListComponent } from './entry-list/entry-list.component';
 import { EntryItemComponent } from './entry-item/entry-item.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ProjectListComponent } from './project-list/project-list.component';
+import { EntryStoreService } from './services/entry-store.service';
+import { EntryService } from './services/entry.service';
 
 const appRoutes: Routes = [
   {path: 'entry-list', component: EntryListComponent},
@@ -29,7 +31,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [EntryStoreService, EntryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
